@@ -1,0 +1,29 @@
+{
+  "name": "@seaway-cli/log",
+  "version": "1.0.0",
+  "description": "seaway-cli log",
+  "author": "lingfengjgf <lingfengjgf@163.com>",
+  "homepage": "https://github.com/lingfengjgf/seaway-cli#readme",
+  "license": "ISC",
+  "main": "lib/index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lingfengjgf/seaway-cli.git"
+  },
+  "scripts": {
+    "test": "node ./__tests__/log.test.js"
+  },
+  "bugs": {
+    "url": "https://github.com/lingfengjgf/seaway-cli/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
