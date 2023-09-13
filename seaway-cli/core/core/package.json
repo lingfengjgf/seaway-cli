@@ -30,8 +30,8 @@
     "access": "public"
   },
   "dependencies": {
-    "@seaway-cli/utils": "file:../../utils/utils",
+    "@seaway-cli/exec": "file:../exec",
     "@seaway-cli/log": "file:../../utils/log",
-    "@seaway-cli/exec": "file:../exec"
+    "@seaway-cli/utils": "file:../../utils/utils"
   }
 }
