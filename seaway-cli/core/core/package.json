@@ -32,6 +32,9 @@
   "dependencies": {
     "@seaway-cli/exec": "file:../exec",
     "@seaway-cli/log": "file:../../utils/log",
-    "@seaway-cli/utils": "file:../../utils/utils"
+    "@seaway-cli/utils": "file:../../utils/utils",
+    "colors": "^1.4.0",
+    "import-local": "^3.1.0",
+    "semver": "^7.5.4"
   }
 }

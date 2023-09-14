@@ -25,5 +25,11 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "keywords": [
+    "log"
+  ],
+  "dependencies": {
+    "npmlog": "^7.0.1"
   }
 }
