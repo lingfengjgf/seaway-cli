@@ -10,18 +10,34 @@ const pkg = require("../package.json");
 const log = require("@seaway-cli/log");
 const constant = require("./const");
 
-function core() {
+async function core() {
   try {
     checkPkgVersion();
     checkNodeVersion();
     checkRoot();
     checkUserHome();
     checkEnv();
+    await checkGlobalUpdate();
   } catch (error) {
     log.error(error.message);
   }
 }
 
+async function checkGlobalUpdate() {
+  // 获取当前版本号和模块名
+  const currentVersion = pkg.version;
+  const npmName = pkg.name;
+  // 获取最新的版本号，提示用户更新到该版本
+  const { getNpmSemverVersion } = require("@seaway-cli/get-npm-info");
+  const lastVersion = await getNpmSemverVersion(currentVersion, npmName);
+  if (lastVersion && semver.gt(lastVersion, currentVersion)) {
+    log.warn(
+      "更新提示",
+      colors.yellow(`请手动更新 ${npmName} ，当前版本: ${currentVersion}，最新版本：${lastVersion}
+更新命令：npm install -g ${npmName}`)
+    );
+  }
+}
 function checkEnv() {
   const dotenv = require("dotenv");
   const dotenvPath = path.resolve(userHome, ".env");
