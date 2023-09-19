@@ -1,6 +1,6 @@
 {
   "name": "@seaway-cli/get-npm-info",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "description": "seaway-cli get-npm-info",
   "author": "lingfengjgf <lingfengjgf@163.com>",
   "homepage": "https://github.com/lingfengjgf/seaway-cli#readme",

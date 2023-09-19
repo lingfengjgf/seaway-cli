@@ -31,10 +31,11 @@
   },
   "dependencies": {
     "@seaway-cli/exec": "file:../exec",
+    "@seaway-cli/get-npm-info": "file:../../utils/get-npm-info",
     "@seaway-cli/log": "file:../../utils/log",
     "@seaway-cli/utils": "file:../../utils/utils",
-    "@seaway-cli/get-npm-info": "file:../../utils/get-npm-info",
     "colors": "^1.4.0",
+    "commander": "^11.0.0",
     "dotenv": "^16.3.1",
     "import-local": "^3.1.0",
     "path-exists": "^4.0.0",

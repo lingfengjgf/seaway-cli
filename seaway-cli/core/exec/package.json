@@ -1,7 +1,7 @@
 {
   "name": "@seaway-cli/exec",
   "version": "1.0.1",
-  "description": "seaway-cli exec",
+  "description": "seaway-cli execute package",
   "author": "lingfengjgf <lingfengjgf@163.com>",
   "homepage": "https://github.com/lingfengjgf/seaway-cli#readme",
   "license": "ISC",
