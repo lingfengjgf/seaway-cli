@@ -25,5 +25,8 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "dependencies": {
+    "@seaway-cli/package": "file:../../models/package"
   }
 }
