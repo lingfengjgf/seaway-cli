@@ -26,5 +26,8 @@
   },
   "bugs": {
     "url": "https://github.com/lingfengjgf/seaway-cli/issues"
+  },
+  "dependencies": {
+    "@seaway-cli/utils": "file:../../utils/utils"
   }
 }
