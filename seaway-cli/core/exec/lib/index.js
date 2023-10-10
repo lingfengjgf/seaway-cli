@@ -15,9 +15,14 @@ function exec() {
   const cmdName = cmdObj.name();
   const packageName = SETTINGS[cmdName];
   const packageVersion = "latest";
+
+  if (!targetPath) {
+    // 生成缓存路径
+  }
   log.verbose("targetPath", targetPath);
   log.verbose("homePath", homePath);
   const pkg = new Package({ targetPath, packageName, packageVersion });
+  console.log(pkg.getRootFilePath());
 }
 
 module.exports = exec;

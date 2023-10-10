@@ -1,7 +1,7 @@
 {
-  "name": "@seaway-cli/package",
+  "name": "@seaway-cli/format-path",
   "version": "1.0.0",
-  "description": "seaway-cli package",
+  "description": "format path",
   "author": "lingfengjgf <lingfengjgf@163.com>",
   "homepage": "https://github.com/lingfengjgf/seaway-cli#readme",
   "license": "ISC",
@@ -14,7 +14,6 @@
     "lib"
   ],
   "publishConfig": {
-    "access": "public",
     "registry": "https://registry.npmmirror.com/"
   },
   "repository": {
@@ -22,14 +21,9 @@
     "url": "git+https://github.com/lingfengjgf/seaway-cli.git"
   },
   "scripts": {
-    "test": "node ./__tests__/@seaway-cli/package.test.js"
+    "test": "node ./__tests__/@seaway-cli/format-path.test.js"
   },
   "bugs": {
     "url": "https://github.com/lingfengjgf/seaway-cli/issues"
-  },
-  "dependencies": {
-    "@seaway-cli/utils": "file:../../utils/utils",
-    "@seaway-cli/format-path": "file:../../utils/format-path",
-    "pkg-dir": "^5.0.0"
   }
 }
