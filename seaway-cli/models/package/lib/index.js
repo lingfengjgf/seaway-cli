@@ -1,8 +1,10 @@
 "use strict";
 const path = require("path");
 const pkgDir = require("pkg-dir").sync;
+const npminstall = require("npminstall");
 const { isObject } = require("@seaway-cli/utils");
 const formatPath = require("@seaway-cli/format-path");
+const { getDefaultRegistry } = require("@seaway-cli/get-npm-info");
 class Package {
   constructor(options) {
     if (!options) {
@@ -36,6 +38,20 @@ class Package {
       }
     }
     return null;
+  }
+
+  // 安装package
+  install() {
+    return npminstall({
+      root: this.targetPath,
+      storeDir: this.storeDir,
+      registry: getDefaultRegistry(),
+      pkgs: [{ name: this.packageName, version: this.packageVersion }],
+    });
+  }
+
+  exists() {
+    
   }
 }
 

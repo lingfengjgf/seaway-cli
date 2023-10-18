@@ -28,8 +28,10 @@
     "url": "https://github.com/lingfengjgf/seaway-cli/issues"
   },
   "dependencies": {
-    "@seaway-cli/utils": "file:../../utils/utils",
     "@seaway-cli/format-path": "file:../../utils/format-path",
+    "@seaway-cli/get-npm-info": "file:../../utils/get-npm-info",
+    "@seaway-cli/utils": "file:../../utils/utils",
+    "npminstall": "^7.11.1",
     "pkg-dir": "^5.0.0"
   }
 }
