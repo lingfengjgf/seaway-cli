@@ -2,9 +2,10 @@
 const path = require("path");
 const pkgDir = require("pkg-dir").sync;
 const npminstall = require("npminstall");
+const pathExists = require("path-exists").sync;
 const { isObject } = require("@seaway-cli/utils");
 const formatPath = require("@seaway-cli/format-path");
-const { getDefaultRegistry } = require("@seaway-cli/get-npm-info");
+const { getDefaultRegistry, getNpmLatestVersion } = require("@seaway-cli/get-npm-info");
 class Package {
   constructor(options) {
     if (!options) {
@@ -41,7 +42,8 @@ class Package {
   }
 
   // 安装package
-  install() {
+  async install() {
+    await this.prepare();
     return npminstall({
       root: this.targetPath,
       storeDir: this.storeDir,
@@ -50,8 +52,25 @@ class Package {
     });
   }
 
-  exists() {
-    
+  async prepare() {
+    if (this.packageVersion === 'latest') {
+      this.packageVersion = await getNpmLatestVersion(this.packageName);
+    }
+
+  }
+
+  get cacheFilePath() {
+    return path.resolve(this.storeDir, `.store/${this.cacheFilePathPrefix}@${this.packageVersion}`)
+  }
+
+  // 判断package是否存在
+  async exists() {
+    if (this.storeDir) {
+      await this.prepare();
+      return pathExists(this.cacheFilePath);
+    } else {
+      return pathExists(this.targetPath);
+    }
   }
 }
 
