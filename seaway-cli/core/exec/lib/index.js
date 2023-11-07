@@ -5,7 +5,7 @@ const Package = require("@seaway-cli/package");
 const log = require("@seaway-cli/log");
 
 const SETTINGS = {
-  init: "@lingfeng-cli-dev/core",
+  init: "@imooc-cli/utils",
 };
 
 const CACHE_DIR = "dependencies";

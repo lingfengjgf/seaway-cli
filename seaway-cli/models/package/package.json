@@ -31,6 +31,7 @@
     "@seaway-cli/format-path": "file:../../utils/format-path",
     "@seaway-cli/get-npm-info": "file:../../utils/get-npm-info",
     "@seaway-cli/utils": "file:../../utils/utils",
+    "fs-extra": "^11.1.1",
     "npminstall": "^7.11.1",
     "path-exists": "^4.0.0",
     "pkg-dir": "^5.0.0"
