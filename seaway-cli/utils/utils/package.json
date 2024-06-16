@@ -25,5 +25,9 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "dependencies": {
+    "cli-spinners": "^2.9.0",
+    "ora": "^5.0.0"
   }
 }

@@ -16,7 +16,6 @@ const program = new commander.Command();
 
 async function core() {
   try {
-    checkNodeVersion();
     await prepare();
     registerCommand();
   } catch (error) {
@@ -131,18 +130,6 @@ function checkUserHome() {
 function checkRoot() {
   const rootCheck = require("root-check");
   rootCheck();
-}
-
-function checkNodeVersion() {
-  //当前版本号
-  const currentVersion = process.version;
-  //最低版本号
-  const lowestVersion = constant.LOWEST_NODE_VERSION;
-  if (!semver.gte(currentVersion, lowestVersion)) {
-    throw new Error(
-      colors.red(`seaway-cli 需要安装 v${lowestVersion} 以上版本的 Node.js`)
-    );
-  }
 }
 
 function checkPkgVersion() {

@@ -1,7 +1,7 @@
 {
-  "name": "@seaway-cli/exec",
-  "version": "1.0.1",
-  "description": "seaway-cli execute package",
+  "name": "@seaway-cli/request",
+  "version": "1.0.0",
+  "description": "seaway-cli request",
   "author": "lingfengjgf <lingfengjgf@163.com>",
   "homepage": "https://github.com/lingfengjgf/seaway-cli#readme",
   "license": "ISC",
@@ -13,22 +13,20 @@
   "files": [
     "lib"
   ],
+  "publishConfig": {
+    "registry": "https://registry.npmmirror.com/"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/lingfengjgf/seaway-cli.git"
   },
   "scripts": {
-    "test": "node ./__tests__/exec.test.js"
+    "test": "node ./__tests__/@seaway-cli/request.test.js"
   },
   "bugs": {
     "url": "https://github.com/lingfengjgf/seaway-cli/issues"
   },
-  "publishConfig": {
-    "access": "public"
-  },
   "dependencies": {
-    "@seaway-cli/package": "file:../../models/package",
-    "@seaway-cli/utils": "file:../../utils/utils",
-    "@seaway-cli/log": "file:../../utils/log"
+    "axios": "^1.7.2"
   }
 }

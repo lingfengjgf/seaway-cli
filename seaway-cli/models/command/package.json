@@ -1,7 +1,7 @@
 {
-  "name": "@seaway-cli/init",
+  "name": "@seaway-cli/command",
   "version": "1.0.0",
-  "description": "> TODO: description",
+  "description": "seaway-cli command",
   "author": "lingfengjgf <lingfengjgf@163.com>",
   "homepage": "https://github.com/lingfengjgf/seaway-cli#readme",
   "license": "ISC",
@@ -14,29 +14,22 @@
     "lib"
   ],
   "publishConfig": {
-    "registry": "https://registry.npmmirror.com/",
-    "access": "public"
+    "registry": "https://registry.npmmirror.com/"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/lingfengjgf/seaway-cli.git"
   },
   "scripts": {
-    "test": "node ./__tests__/@seaway-cli/init.test.js"
+    "test": "node ./__tests__/@seaway-cli/command.test.js"
   },
   "bugs": {
     "url": "https://github.com/lingfengjgf/seaway-cli/issues"
   },
   "dependencies": {
-    "@seaway-cli/command": "file:../../models/command",
-    "@seaway-cli/package": "file:../../models/package",
     "@seaway-cli/log": "file:../../utils/log",
-    "@seaway-cli/request": "file:../../utils/request",
     "@seaway-cli/utils": "file:../../utils/utils",
-    "fs-extra": "^11.2.0",
-    "inquirer": "^8.0.0",
-    "kebab-case": "^1.0.2",
-    "semver": "^7.6.2",
-    "user-home": "^3.0.0"
+    "colors": "^1.4.0",
+    "semver": "^7.6.2"
   }
 }
