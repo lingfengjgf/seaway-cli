@@ -34,9 +34,38 @@ class InitCommand extends Command {
       log.verbose("projectInfo", this.projectInfo);
       // 下载模板
       await this.downloadTemplate();
+      // 安装模板
+      await this.installTemplate();
     } catch (e) {
       log.error(e.message);
     }
+  }
+  async installTemplate() {
+    console.log(this.templateInfo);
+    if (this.templateInfo) {
+      if (!this.templateInfo.type) {
+        this.templateInfo.type = TEMPLATE_TYPE_NORMAL;
+      }
+
+      if (this.templateInfo.type === TEMPLATE_TYPE_NORMAL) {
+        // 标准安装
+        await this.installNormalTemplate();
+      } else if (this.templateInfo.type === TEMPLATE_TYPE_CUSTOM) {
+        // 自定义安装
+        await this.installCustomTemplate();
+      } else {
+        throw new Error("无法识别项目模板类型");
+      }
+    } else {
+      throw new Error("项目模板信息不存在");
+    }
+  }
+
+  async installNormalTemplate() {
+    log.verbose("安装标准模板");
+  }
+  async installCustomTemplate() {
+    log.verbose("安装自定义模板");
   }
   async downloadTemplate() {
     const { projectTemplate } = this.projectInfo;
@@ -68,7 +97,7 @@ class InitCommand extends Command {
       await this.downloadNpmTemplate(targetPath);
     } else {
       // 使用git下载
-      // await this.downloadGitTemplate(targetPath);
+      await this.downloadGitTemplate(targetPath);
     }
   }
 
