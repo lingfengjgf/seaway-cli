@@ -5,6 +5,8 @@ const fse = require("fs-extra");
 const inquirer = require("inquirer");
 const semver = require("semver");
 const userHome = require("user-home");
+const ejs = require("ejs");
+const { globSync } = require("glob");
 const Command = require("@seaway-cli/command");
 const log = require("@seaway-cli/log");
 const Package = require("@seaway-cli/package");
@@ -63,9 +65,84 @@ class InitCommand extends Command {
 
   async installNormalTemplate() {
     log.verbose("安装标准模板");
+    // 复制代码到当前目录
+    let spinner = spinnerStart("正在安装模板...");
+    try {
+      const targetPath = process.cwd();
+      const templatePath = path.resolve(targetPath, this.templateInfo.dirName);
+      fse.ensureDirSync(targetPath);
+      fse.ensureDirSync(templatePath);
+      fse.copySync(templatePath, targetPath, {
+        filter: (src, dest) => {
+          return src.indexOf(".git") < 0;
+        },
+      });
+      await sleep();
+      await fse.removeSync(templatePath);
+    } catch (e) {
+      throw e;
+    } finally {
+      spinner.stop();
+      log.success("安装模板成功");
+    }
+    const templateIgnore = this.templateInfo.ignore || [];
+    const ignore = ["**/node_modules/**", ...templateIgnore];
+    await this.ejsRender(ignore);
+    // 安装依赖
+    const { installCommand, startCommand } = this.templateInfo;
+    if (installCommand) {
+      await this.execCommand(installCommand, "依赖安装失败");
+    }
+    // 运行项目
+    if (startCommand) {
+      await this.execCommand(startCommand, "启动命令执行失败");
+    }
   }
   async installCustomTemplate() {
     log.verbose("安装自定义模板");
+  }
+
+  async ejsRender(ignore) {
+    try {
+      const dir = process.cwd();
+      const projectInfo = this.projectInfo;
+      const files = globSync("**", {
+        cwd: dir,
+        nodir: true,
+        ignore,
+      });
+      Promise.all(
+        files.map((file) => {
+          const filePath = path.join(dir, file);
+          return new Promise((resolve, reject) => {
+            ejs.renderFile(filePath, projectInfo, {}, (err, res) => {
+              if (err) {
+                reject(err);
+              } else {
+                fse.writeFileSync(filePath, res);
+                resolve(res);
+              }
+            });
+          });
+        })
+      );
+    } catch (e) {
+      throw e;
+    }
+  }
+  async execCommand(command, errMsg) {
+    const cmdArr = command.split(" ");
+    const cmd = cmdArr.splice(0, 1)[0];
+    if (!WHITE_COMMAND.includes(cmd)) {
+      throw new Error("不存在的命令: " + cmd);
+    }
+    const res = await execAsync(cmd, cmdArr, {
+      stdio: "inherit",
+      cwd: process.cwd(),
+    });
+    if (res !== 0 && errMsg) {
+      throw new Error(errMsg);
+    }
   }
   async downloadTemplate() {
     const { projectTemplate } = this.projectInfo;
