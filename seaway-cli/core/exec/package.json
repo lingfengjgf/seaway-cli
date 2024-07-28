@@ -27,8 +27,8 @@
     "access": "public"
   },
   "dependencies": {
+    "@seaway-cli/log": "file:../../utils/log",
     "@seaway-cli/package": "file:../../models/package",
-    "@seaway-cli/utils": "file:../../utils/utils",
-    "@seaway-cli/log": "file:../../utils/log"
+    "@seaway-cli/utils": "file:../../utils/utils"
   }
 }
